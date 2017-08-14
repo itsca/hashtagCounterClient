@@ -1,5 +1,7 @@
 import React from 'react';
 import Search from './search.jsx';
+import stores from '../stores/index.js';
+import { Provider } from 'mobx-react';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,11 +16,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="title">
-          <h1 style={{'font-size': '1em'}}>#HashtagCounter</h1>
+          <h1 style={{'fontSize': '1em'}}>#HashtagCounter</h1>
         </div>
-        <div className="container" style={{'text-align': 'center'}}>
+        <div className="container" style={{'textAlign': 'center'}}>
           <p>Look for the number of hashtags by the name <i><strong>(whithout the #)</strong></i>!</p>
-          <Search />
+          <Provider searchHistory={stores.searchHistory}>
+            <Search />
+          </Provider>
         </div>
       </div>
     );
