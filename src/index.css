@@ -1,3 +1,19 @@
+@keyframes rotating {
+	100% {transform: rotate(360deg);}
+}
+@-webkit-keyframes rotating {
+	100% {-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes rotating {
+	100% {-moz-transform:rotate(360deg);}
+}
+@-o-keyframes rotating {
+	100% {-o-transform: rotate(360deg);}
+}
+@-ms-keyframes rotating {
+	100% {-ms-transform: rotate(360deg);}
+}
+
 .App {
   padding-top: 20px;
   display: flex;
@@ -12,25 +28,31 @@
   font-size: 26px;
 }
 
-/*input {
-  margin: 5px;
-}*/
-
-.reminder-form {
-  padding: 5px;
-}
-
 .list-item {
   display: inline-block;
 }
 
-/*.reminder-name {
-  float: left;
-}*/
+.searchResult {
+  padding-top: 1em;
+  margin-bottom: 3em;
+}
 
-.delete-button {
-  float: right;
-  padding-left: 5px;
+.searchHistoryList {
+  margin-bottom: 1em;
+}
+
+.main-footer {
+  padding: 5%;
+}
+
+.loaderIcon {
+  animation: rotating 1.6s infinite;
+  -webkit-animation: rotating 1.6s infinite;
+  -moz-animation: rotating 1.6s infinite;
+  -o-animation: rotating 1.6s infinite;
+  -ms-animation: rotating 1.6s infinite;
+  font-size: 1.5em;
+  color: green;
 }
 
 .cf {

@@ -1,24 +1,23 @@
-import { observable, extendObservable, action } from 'mobx';
+import { extendObservable, action } from 'mobx';
 import {bake_cookie, read_cookie} from 'sfcookies';
 
 class SearchHistory {
   constructor() {
       extendObservable(this, {
-         history: [
-           { hashtagName: 'costaRica', hashtagCount: 259 },
-         ],
+         history: read_cookie('rhc_searchHistory') || [],
          addToHistory: action(function addToHistory(newSearch) {
-           console.log('newSearch', newSearch);
            this.history.push(newSearch);
-           console.log('New History', this.history);
-         })
+           this.history = this.history.sort(function(obj1, obj2) {
+             return obj2.hashtagCount - obj1.hashtagCount;
+           });
+           bake_cookie('rhc_searchHistory', this.history);
+         }),
+         deleteHistory: action(function deleteHistory() {
+           this.history = [];
+           bake_cookie('rhc_searchHistory', this.history);
+         }),
       })
   }
-
-
-  // all = observable([
-  //   { hashtagName: 'costaRica', hashtagCount: 259 },
-  // ]);
 }
 
 export default new SearchHistory();
